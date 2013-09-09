@@ -44,7 +44,7 @@ void AISystem::AI_Update()
 		for(agentIterator = agents.begin(); agentIterator != agents.end(); agentIterator++)
 		{
 			Behavior currentBehavior = agentIterator->second;
-			currentBehavior.assessEnvironment(id);
+			currentBehavior.assessEnvironment(player);
 			currentBehavior.behave();
 		}
 	}
