@@ -61,6 +61,6 @@ void Steering::Flee(Agent currentAgent, Agent targetAgent)
 	fleeVector[1] = ((yDirection) ? currentAgent[1] + 5 : currentAgent[1] - 5);
 	fleeVector[2] = ((zDirection) ? currentAgent[2] + 5 : currentAgent[2] - 5);
 
-	currentAgent.getPostion(fleeVector);
+	currentAgent.setPostion(fleeVector);
 }
 
