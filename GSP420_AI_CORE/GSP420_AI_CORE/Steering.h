@@ -3,64 +3,64 @@
 #define ToRadian(degree) ((degree) * (PI / 180.0f))
 #define ToDegree(radian) ((radian) * (180.0f / PI))
 
-//an example of the data structure we need to perform steering
-struct Kinematics
-{
-	float orientation;
-	float rotation;
-	float position[3];//made for 3D, can be 2D
-	float velocity[3];//made for 3D, can be 2D
-}
+#include "Agent.h"
 
 class Steering
 {
-private:
-	Kinematics targetAgent;	//object we perform steering operations in accordance too
-	Kinematics currentAgent;	//object we are steering
 public:
-	void MatchVelocity();	//use to match velocity
-	void RotationAlign();	//use to face target like a turret
-	void Seek();
-	void Flee();
-}
+	static void MatchVelocity(Agent, Agent);	//use to match velocity
+	static void RotationAlign(Agent, Agent);	//use to face target like a turret
+	static void Seek(Agent, Agent);
+	static void Seek(Agent, float[3]);
+	static void Flee(Agent, Agent);
+};
 
 //match velocity to that of the target, made for 3D, can be 2D
-void Steering::MatchVelocity()
+void Steering::MatchVelocity(Agent currentAgent, Agent targetAgent)
 {
-	currentAgent.velocity[0] = targetAgent.velocity[0];
-	currentAgent.velocity[1] = targetAgent.velocity[1];
-	currentAgent.velocity[2] = targetAgent.velocity[2];
+	float targetVelocity[3];
+	targetAgent.getVelocity(targetVelocity);
+	currentAgent.setVelocity(targetVelocity);
 }
 
 //turn towards target, *****INCOMPLETE*****
-void Steering::RotationAlign()
+void Steering::RotationAlign(Agent currentAgent, Agent targetAgent)
 {
-	currentAgent.rotation = targetAgent.orientation - currentAgent.orientation;
+	currentAgent.setRotation(targetAgent.getOrientation() - currentAgent.getOrientation());
 	//now need to put the rotation value in the range of -PI and PI
 	
 }
 
-void Steering::Seek()
+void Steering::Seek(Agent currentAgent, Agent targetAgent)
 {
-
-	bool xDirection = currentAgent.position[0] > targetAgent.position[0];
-	bool yDirection = currentAgent.position[1] > targetAgent.position[1];
-	bool zDirection = currentAgent.position[2] > targetAgent.position[2];
-
-	((xDirection) ? currentAgent.position[0]-- : currentAgent.position[0]++); 
-	((yDirection) ? currentAgent.position[1]-- : currentAgent.position[1]++);
-	((zDirection) ? currentAgent.position[2]-- : currentAgent.position[2]++);
+	float targetPosition[3];
+	targetAgent.getPostion(targetPosition);
+	currentAgent.setPostion(targetPosition);
 }
 
-void Steering::Flee()
+void Steering::Seek(Agent currentAgent, float targetPosition[3])
 {
+	currentAgent.setPostion(targetPosition);
+}
 
-	bool xDirection = currentAgent.position[0] > targetAgent.position[0];
-	bool yDirection = currentAgent.position[1] > targetAgent.position[1];
-	bool zDirection = currentAgent.position[2] > targetAgent.position[2];
+void Steering::Flee(Agent currentAgent, Agent targetAgent)
+{
+	float selfPosition[3];
+	float playerPosition[3];
 
-	((xDirection) ? currentAgent.position[0]++ : currentAgent.position[0]--); 
-	((yDirection) ? currentAgent.position[1]++ : currentAgent.position[1]--);
-	((zDirection) ? currentAgent.position[2]++ : currentAgent.position[2]--);
+	currentAgent.getPostion(selfPosition);
+	targetAgent.getPostion(playerPosition);
+
+	bool xDirection = selfPosition[0] > playerPosition[0];
+	bool yDirection = selfPosition[1] > playerPosition[1];
+	bool zDirection = selfPosition[2] > playerPosition[2];
+
+	float fleeVector[3];
+
+	fleeVector[0] = ((xDirection) ? currentAgent[0] + 5 : currentAgent[0] - 5); 
+	fleeVector[1] = ((yDirection) ? currentAgent[1] + 5 : currentAgent[1] - 5);
+	fleeVector[2] = ((zDirection) ? currentAgent[2] + 5 : currentAgent[2] - 5);
+
+	currentAgent.getPostion(fleeVector);
 }
 

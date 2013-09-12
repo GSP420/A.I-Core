@@ -11,6 +11,7 @@
 #include <vector>
 #include <iostream>
 #include <hash_map>
+#include <time.h>
 
 #include "Behavior.h"
 
@@ -20,20 +21,21 @@ using namespace stdext;
 class AISystem
 {
 	private:
-		int player;
+		Agent player;
 		hash_map<string, Behavior> agents;					// a list of registered behaviors for
 		hash_map<string, Behavior>::iterator agentIterator;	// list iterator
 	public:
-		AISystem(int);							// constructor
+		AISystem(Agent);							// constructor
 		void AI_Update();						// called to update all agents
 		void registerAgent(string, Behavior);	// register an agent with the AI system
 		void unRegisterAgent(string);			// remove an agent from the AI system
 };
 
-AISystem::AISystem(int playerId)
+AISystem::AISystem(Agent playerAgent)
 {	//NOTE: the playerId argument is an int here as a place holder, it should be an actual player object
 
-	player = playerId;
+	player = playerAgent;
+	srand(time(NULL));
 }
 
 void AISystem::AI_Update()

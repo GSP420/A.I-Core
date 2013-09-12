@@ -60,10 +60,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Agent.h" />
     <ClInclude Include="AISystem.h" />
     <ClInclude Include="Behavior.h" />
+    <ClInclude Include="GenericEnemy.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="Steering.h" />
+    <ClInclude Include="Wander.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
