@@ -13,6 +13,7 @@ public:
 	static void Seek(Agent, Agent);
 	static void Seek(Agent, float[3]);
 	static void Flee(Agent, Agent);
+	static void Arrive(Agent, Agent);
 };
 
 //match velocity to that of the target, made for 3D, can be 2D
@@ -34,13 +35,13 @@ void Steering::RotationAlign(Agent currentAgent, Agent targetAgent)
 void Steering::Seek(Agent currentAgent, Agent targetAgent)
 {
 	float targetPosition[3];
-	targetAgent.getPostion(targetPosition);
-	currentAgent.setPostion(targetPosition);
+	targetAgent.getPosition(targetPosition);
+	currentAgent.setPosition(targetPosition);
 }
 
 void Steering::Seek(Agent currentAgent, float targetPosition[3])
 {
-	currentAgent.setPostion(targetPosition);
+	currentAgent.setPosition(targetPosition);
 }
 
 void Steering::Flee(Agent currentAgent, Agent targetAgent)
@@ -48,8 +49,8 @@ void Steering::Flee(Agent currentAgent, Agent targetAgent)
 	float selfPosition[3];
 	float playerPosition[3];
 
-	currentAgent.getPostion(selfPosition);
-	targetAgent.getPostion(playerPosition);
+	currentAgent.getPosition(selfPosition);
+	targetAgent.getPosition(playerPosition);
 
 	bool xDirection = selfPosition[0] > playerPosition[0];
 	bool yDirection = selfPosition[1] > playerPosition[1];
@@ -61,6 +62,47 @@ void Steering::Flee(Agent currentAgent, Agent targetAgent)
 	fleeVector[1] = ((yDirection) ? currentAgent[1] + 5 : currentAgent[1] - 5);
 	fleeVector[2] = ((zDirection) ? currentAgent[2] + 5 : currentAgent[2] - 5);
 
-	currentAgent.setPostion(fleeVector);
+	currentAgent.setPosition(fleeVector);
 }
 
+void Steering::Arrive(Agent currentAgent, Agent targetAgent)
+{
+	//	Arrive will adjust the agent's speed based on distance to the player
+	//	Arrive written by Mark Kirol
+
+	float selfPosition[3];
+	float playerPosition[3];
+	
+	currentAgent.getPosition(selfPosition);
+	targetAgent.getPosition(playerPosition);
+
+	// calculate distance between the player and agent
+	float distanceToTargetAgent[3] = {0.0f, 0.0f, 0.0f};
+	for (int i = 0; i < 3; i++)
+	{
+		if (playerPosition[i] > selfPosition[i]) {distanceToTargetAgent[i] = playerPosition[i] - selfPosition[i];}
+		else if (playerPosition[i] < selfPosition[i]) {distanceToTargetAgent[i] = selfPosition[i] - playerPosition[i];}
+		else distanceToTargetAgent[i] = 0.0f;
+	}
+
+	float slow = 1.0f, normal = 2.0f, fast = 3.0f;						//Speeds need to be adjusted once a base speed is decided upon??
+	float speed[3] = {0.0f, 0.0f, 0.0f};
+	
+	// set speed in 3 dimensions based on distance in the 3 dimensions
+	for (int j = 0; j < 3; j++)
+	{
+		if (distanceToTargetAgent[j] >= 10.0f) {speed[j] = fast;}
+		else if ((distanceToTargetAgent[j] > 5.0f) || (distanceToTargetAgent[0] < 10.0f)) {speed[j] = normal;}
+		else if (distanceToTargetAgent[j] <= 5.0f) {speed[j] = slow;}
+		else speed[j] = 0.0f;
+	}
+
+	float arriveVelocity[3] = {speed[0], speed[1], speed[2]};
+	currentAgent.setVelocity(arriveVelocity);
+
+	// Seek functionality written by Stephen Roebuck
+	float targetPosition[3];
+	targetAgent.getPosition(targetPosition);
+	currentAgent.setPosition(targetPosition);
+	
+}

@@ -18,8 +18,8 @@ class Agent
 		float getOrientation();
 		float getRotation();
 		void setRotation(float);
-		void getPostion(float[3]);
-		void setPostion(float[3]);
+		void getPosition(float[3]);
+		void setPosition(float[3]);
 		void getVelocity(float[3]);
 		void setVelocity(float[3]);
 		
@@ -54,14 +54,14 @@ void Agent::setRotation(float source)
 	rotation = source;
 }
 
-void Agent::getPostion(float destination[3])
+void Agent::getPosition(float destination[3])
 {
 	destination[0] = position[0];
 	destination[1] = position[1];
 	destination[2] = position[2];
 }
 
-void Agent::setPostion(float source[3])
+void Agent::setPosition(float source[3])
 {
 	position[0] = source[0];
 	position[1] = source[1];
