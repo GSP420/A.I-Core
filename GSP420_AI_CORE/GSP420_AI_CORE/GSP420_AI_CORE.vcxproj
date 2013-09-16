@@ -64,6 +64,7 @@
     <ClInclude Include="AISystem.h" />
     <ClInclude Include="Behavior.h" />
     <ClInclude Include="GenericEnemy.h" />
+    <ClInclude Include="Persue.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="Steering.h" />
     <ClInclude Include="Wander.h" />

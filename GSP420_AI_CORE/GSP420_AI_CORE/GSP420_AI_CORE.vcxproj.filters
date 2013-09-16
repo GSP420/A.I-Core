@@ -36,5 +36,8 @@
     <ClInclude Include="Wander.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Persue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
