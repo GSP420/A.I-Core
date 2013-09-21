@@ -77,7 +77,7 @@ void Steering::Arrive(Agent currentAgent, Agent targetAgent)
 	targetAgent.getPosition(playerPosition);
 
 	// calculate distance between the player and agent
-	float distanceToTargetAgent[3] = {0.0f, 0.0f, 0.0f};
+	float distanceToTargetAgent[3];
 	for (int i = 0; i < 3; i++)
 	{
 		if (playerPosition[i] > selfPosition[i]) {distanceToTargetAgent[i] = playerPosition[i] - selfPosition[i];}
@@ -85,23 +85,19 @@ void Steering::Arrive(Agent currentAgent, Agent targetAgent)
 		else distanceToTargetAgent[i] = 0.0f;
 	}
 
-	float slow = 1.0f, normal = 2.0f, fast = 3.0f;						//Speeds need to be adjusted once a base speed is decided upon			?????
-	float close = 5.0f, far = 10.0f;									//Distances need to be determined once a unit distance is decided upon	?????
-	float arriveVelocity[3] = {0.0f, 0.0f, 0.0f};
+	float slow = 1.0f, fast = 3.0f;						//Speeds need to be adjusted once a base speed is decided upon			?????
+	float close = 1.0f, far = 10.0f;					//Distances need to be determined once a unit distance is decided upon	?????
 
 	// set speed in 3 dimensions based on distance in the 3 dimensions
+	float arriveVelocity[3];
 	for (int j = 0; j < 3; j++)
 	{
 		if (distanceToTargetAgent[j] >= far) {arriveVelocity[j] = fast;}
-		else if ((distanceToTargetAgent[j] > close) || (distanceToTargetAgent[0] < far)) {arriveVelocity[j] = normal;}
-		else if (distanceToTargetAgent[j] <= close) {arriveVelocity[j] = slow;}
+		else if ((distanceToTargetAgent[j] > 0.0f) && (distanceToTargetAgent[0] < far)) {arriveVelocity[j] = slow;}
 		else arriveVelocity[j] = 0.0f;
 	}
 
 	currentAgent.setVelocity(arriveVelocity);
 
-	// Seek functionality copied from Stephen Roebuck's Seek(Agent, Agent) method
-	float targetPosition[3];
-	targetAgent.getPosition(targetPosition);
-	currentAgent.setPosition(targetPosition);	
+	Seek(currentAgent, targetAgent);
 }
