@@ -77,7 +77,7 @@ void Steering::Arrive(Agent currentAgent, Agent targetAgent)
 	targetAgent.getPosition(playerPosition);
 
 	// calculate distance between the player and agent
-	float distanceToTargetAgent[3];
+	float distanceToTargetAgent[3] = {0.0f, 0.0f, 0.0f};
 	for (int i = 0; i < 3; i++)
 	{
 		if (playerPosition[i] > selfPosition[i]) {distanceToTargetAgent[i] = playerPosition[i] - selfPosition[i];}
@@ -89,7 +89,7 @@ void Steering::Arrive(Agent currentAgent, Agent targetAgent)
 	float close = 1.0f, far = 10.0f;					//Distances need to be determined once a unit distance is decided upon	?????
 
 	// set speed in 3 dimensions based on distance in the 3 dimensions
-	float arriveVelocity[3];
+	float arriveVelocity[3] = {0.0f, 0.0f, 0.0f};
 	for (int j = 0; j < 3; j++)
 	{
 		if (distanceToTargetAgent[j] >= far) {arriveVelocity[j] = fast;}

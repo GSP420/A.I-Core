@@ -31,10 +31,10 @@ void Persue::enter()
 
 void Persue::enact()
 {
-	float selfCurrentPosition[3];
-	float targetVelocity[3];
-	float targetCurrentPosition[3];
-	float targetFuturePosition[3];	
+	float selfCurrentPosition[3] = {0.0f, 0.0f, 0.0f};
+	float targetVelocity[3] = {0.0f, 0.0f, 0.0f};
+	float targetCurrentPosition[3] = {0.0f, 0.0f, 0.0f};
+	float targetFuturePosition[3] = {0.0f, 0.0f, 0.0f};	
 
 	self.getPosition(selfCurrentPosition);
 	target.getVelocity(targetVelocity);
