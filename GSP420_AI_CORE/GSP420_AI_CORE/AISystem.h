@@ -7,13 +7,11 @@
 *
 *	Author: Stephen Roebuck
 */
-#include <list>
-#include <vector>
 #include <iostream>
 #include <hash_map>
 #include <time.h>
 
-#include "Behavior.h"
+#include "GenericEnemy.h"
 
 using namespace std;
 using namespace stdext;
@@ -22,18 +20,18 @@ class AISystem
 {
 	private:
 		Agent* player;
-		hash_map<string, Behavior> agents;					// a list of registered behaviors for
-		hash_map<string, Behavior>::iterator agentIterator;	// list iterator
+		hash_map<int, Behavior*> agents;					// a list of registered behaviors for
+		hash_map<int, Behavior*>::iterator agentIterator;	// list iterator
+
 	public:
-		AISystem(Agent*);							// constructor
-		void AI_Update();						// called to update all agents
-		void registerAgent(string, Behavior);	// register an agent with the AI system
-		void unRegisterAgent(string);			// remove an agent from the AI system
+		AISystem(Agent*);					// constructor
+		void AI_Update();					// called to update all agents
+		void registerAgent(int, Behavior*);	// register an agent with the AI system
+		void unRegisterAgent(int);			// remove an agent from the AI system
 };
 
 AISystem::AISystem(Agent* playerAgent)
-{	//NOTE: the playerId argument is an int here as a place holder, it should be an actual player object
-
+{	
 	player = playerAgent;
 	srand(time(NULL));
 }
@@ -45,20 +43,19 @@ void AISystem::AI_Update()
 		// loop through all the behaviors in the agents map, and 
 		for(agentIterator = agents.begin(); agentIterator != agents.end(); agentIterator++)
 		{
-			Behavior currentBehavior = agentIterator->second;
-			currentBehavior.assessEnvironment(player);
-			currentBehavior.behave();
+			Behavior* currentBehavior = agentIterator->second;
+			currentBehavior->assessEnvironment(player);
+			currentBehavior->behave();
 		}
 	}
 }
 
-void AISystem::registerAgent(string agentId, Behavior behavior)
+void AISystem::registerAgent(int agentId, Behavior* behavior)
 {	// add a new agent to the AI system
 	agents[agentId] = behavior;
 }
 
-void AISystem::unRegisterAgent(string agentId)
+void AISystem::unRegisterAgent(int agentId)
 {	//remove an agent, typically because it is destoryed
 	agents.erase(agentId);
 }
-

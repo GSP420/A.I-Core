@@ -8,14 +8,10 @@
 *
 *	Author: Stephen Roebuck
 */
-#include <iostream>
-#include "Agent.h"
-using namespace std;
 
 class Behavior
 {
 	public:
-		virtual void assessEnvironment(Agent*);	// decide what state to be in
-		virtual void behave();				// behave according to the current state
+		virtual void assessEnvironment(void*) = 0;	// decide what state to be in
+		virtual void behave() = 0;				// behave according to the current state
 };
-

@@ -6,14 +6,11 @@
 *
 *	Author: Stephen Roebuck
 */
-#include <iostream>
-
-using namespace std;
 
 class State
 {
 	public:
-		virtual void enter();	// called when this state is being entered
-		virtual void enact();	// behave according to the current state
-		virtual void exit();	// called when this state is being exited
+		virtual void enter() = 0;	// called when this state is being entered
+		virtual void enact() = 0;	// behave according to the current state
+		virtual void exit() = 0;	// called when this state is being exited
 };

@@ -69,6 +69,14 @@
     <ClInclude Include="Steering.h" />
     <ClInclude Include="Wander.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Agent.cpp" />
+    <ClCompile Include="GenericEnemy.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Pursue.cpp" />
+    <ClCompile Include="Steering.cpp" />
+    <ClCompile Include="Wander.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
