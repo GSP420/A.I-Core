@@ -8,8 +8,9 @@ class Agent
 	private:
 		float orientation;
 		float rotation;
-		float position[3];	//made for 3D, can be 2D
-		float velocity[3];	//made for 3D, can be 2D
+		float position[3];
+		float velocity[3];
+		float destination[3];
 	public:
 		Agent();
 		float getOrientation();
@@ -19,5 +20,6 @@ class Agent
 		void setPosition(float[3]);
 		void getVelocity(float[3]);
 		void setVelocity(float[3]);
-		
+		void getDestination(float[3]);
+		void setDestination(float[3]);
 };

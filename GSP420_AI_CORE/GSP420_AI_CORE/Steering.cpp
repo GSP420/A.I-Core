@@ -20,12 +20,12 @@ void Steering::Seek(Agent* currentAgent, Agent* targetAgent)
 {
 	float targetPosition[3];
 	targetAgent->getPosition(targetPosition);
-	currentAgent->setPosition(targetPosition);
+	currentAgent->setDestination(targetPosition);
 }
 
 void Steering::Seek(Agent* currentAgent, float targetPosition[3])
 {
-	currentAgent->setPosition(targetPosition);
+	currentAgent->setDestination(targetPosition);
 }
 
 void Steering::Flee(Agent* currentAgent, Agent* targetAgent)
@@ -46,7 +46,7 @@ void Steering::Flee(Agent* currentAgent, Agent* targetAgent)
 	fleeVector[1] = ((yDirection) ? selfPosition[1] + 5 : selfPosition[1] - 5);
 	fleeVector[2] = ((zDirection) ? selfPosition[2] + 5 : selfPosition[2] - 5);
 
-	currentAgent->setPosition(fleeVector);
+	currentAgent->setDestination(fleeVector);
 }
 
 void Steering::Arrive(Agent* currentAgent, Agent* targetAgent)

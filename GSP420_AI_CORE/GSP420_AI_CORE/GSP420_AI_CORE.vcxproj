@@ -63,6 +63,7 @@
     <ClInclude Include="Agent.h" />
     <ClInclude Include="AISystem.h" />
     <ClInclude Include="Behavior.h" />
+    <ClInclude Include="Evade.h" />
     <ClInclude Include="GenericEnemy.h" />
     <ClInclude Include="Persue.h" />
     <ClInclude Include="State.h" />
@@ -71,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Agent.cpp" />
+    <ClCompile Include="Evade.cpp" />
     <ClCompile Include="GenericEnemy.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pursue.cpp" />
