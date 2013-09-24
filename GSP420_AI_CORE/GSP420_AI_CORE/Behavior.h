@@ -15,7 +15,7 @@ using namespace std;
 class Behavior
 {
 	public:
-		virtual void assessEnvironment(Agent);	// decide what state to be in
+		virtual void assessEnvironment(Agent*);	// decide what state to be in
 		virtual void behave();				// behave according to the current state
 };
 

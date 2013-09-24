@@ -9,17 +9,17 @@
 class Wander : public State
 {
 	private:
-		Agent self;
-		Agent target;
+		Agent* self;
+		Agent* target;
 	public:
-		Wander(Agent, Agent);
+		Wander(Agent*, Agent*);
 		void enter();
 		void enact();
 		void exit();
 		float getRandomPosition();
 };
 
-Wander::Wander(Agent selfAgent, Agent targetAgent)
+Wander::Wander(Agent* selfAgent, Agent* targetAgent)
 {
 	self	= selfAgent;
 	target	= targetAgent;	// for this state, we don't actually use the target, which is the player.

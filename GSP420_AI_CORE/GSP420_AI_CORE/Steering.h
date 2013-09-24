@@ -8,49 +8,49 @@
 class Steering
 {
 public:
-	static void MatchVelocity(Agent, Agent);	//use to match velocity
-	static void RotationAlign(Agent, Agent);	//use to face target like a turret
-	static void Seek(Agent, Agent);
-	static void Seek(Agent, float[3]);
-	static void Flee(Agent, Agent);
-	static void Arrive(Agent, Agent);
+	static void MatchVelocity(Agent*, Agent*);	//use to match velocity
+	static void RotationAlign(Agent*, Agent*);	//use to face target like a turret
+	static void Seek(Agent*, Agent*);
+	static void Seek(Agent*, float[3]);
+	static void Flee(Agent*, Agent*);
+	static void Arrive(Agent*, Agent*);
 };
 
 //match velocity to that of the target, made for 3D, can be 2D
-void Steering::MatchVelocity(Agent currentAgent, Agent targetAgent)
+void Steering::MatchVelocity(Agent* currentAgent, Agent* targetAgent)
 {
 	float targetVelocity[3];
-	targetAgent.getVelocity(targetVelocity);
-	currentAgent.setVelocity(targetVelocity);
+	targetAgent->getVelocity(targetVelocity);
+	currentAgent->setVelocity(targetVelocity);
 }
 
 //turn towards target, *****INCOMPLETE*****
-void Steering::RotationAlign(Agent currentAgent, Agent targetAgent)
+void Steering::RotationAlign(Agent* currentAgent, Agent* targetAgent)
 {
-	currentAgent.setRotation(targetAgent.getOrientation() - currentAgent.getOrientation());
+	currentAgent->setRotation(targetAgent->getOrientation() - currentAgent->getOrientation());
 	//now need to put the rotation value in the range of -PI and PI
 	
 }
 
-void Steering::Seek(Agent currentAgent, Agent targetAgent)
+void Steering::Seek(Agent* currentAgent, Agent* targetAgent)
 {
 	float targetPosition[3];
-	targetAgent.getPosition(targetPosition);
-	currentAgent.setPosition(targetPosition);
+	targetAgent->getPosition(targetPosition);
+	currentAgent->setPosition(targetPosition);
 }
 
-void Steering::Seek(Agent currentAgent, float targetPosition[3])
+void Steering::Seek(Agent* currentAgent, float targetPosition[3])
 {
-	currentAgent.setPosition(targetPosition);
+	currentAgent->setPosition(targetPosition);
 }
 
-void Steering::Flee(Agent currentAgent, Agent targetAgent)
+void Steering::Flee(Agent* currentAgent, Agent* targetAgent)
 {
 	float selfPosition[3];
 	float playerPosition[3];
 
-	currentAgent.getPosition(selfPosition);
-	targetAgent.getPosition(playerPosition);
+	currentAgent->getPosition(selfPosition);
+	targetAgent->getPosition(playerPosition);
 
 	bool xDirection = selfPosition[0] > playerPosition[0];
 	bool yDirection = selfPosition[1] > playerPosition[1];
@@ -58,14 +58,14 @@ void Steering::Flee(Agent currentAgent, Agent targetAgent)
 
 	float fleeVector[3];
 
-	fleeVector[0] = ((xDirection) ? currentAgent[0] + 5 : currentAgent[0] - 5); 
-	fleeVector[1] = ((yDirection) ? currentAgent[1] + 5 : currentAgent[1] - 5);
-	fleeVector[2] = ((zDirection) ? currentAgent[2] + 5 : currentAgent[2] - 5);
+	fleeVector[0] = ((xDirection) ? selfPosition[0] + 5 : selfPosition[0] - 5); 
+	fleeVector[1] = ((yDirection) ? selfPosition[1] + 5 : selfPosition[1] - 5);
+	fleeVector[2] = ((zDirection) ? selfPosition[2] + 5 : selfPosition[2] - 5);
 
-	currentAgent.setPosition(fleeVector);
+	currentAgent->setPosition(fleeVector);
 }
 
-void Steering::Arrive(Agent currentAgent, Agent targetAgent)
+void Steering::Arrive(Agent* currentAgent, Agent* targetAgent)
 {
 	//	Arrive will adjust the agent's speed based on distance to the player
 	//	Arrive written by Mark Kirol
@@ -73,8 +73,8 @@ void Steering::Arrive(Agent currentAgent, Agent targetAgent)
 	float selfPosition[3];
 	float playerPosition[3];
 	
-	currentAgent.getPosition(selfPosition);
-	targetAgent.getPosition(playerPosition);
+	currentAgent->getPosition(selfPosition);
+	targetAgent->getPosition(playerPosition);
 
 	// calculate distance between the player and agent
 	float distanceToTargetAgent[3] = {0.0f, 0.0f, 0.0f};
@@ -97,7 +97,7 @@ void Steering::Arrive(Agent currentAgent, Agent targetAgent)
 		else arriveVelocity[j] = 0.0f;
 	}
 
-	currentAgent.setVelocity(arriveVelocity);
+	currentAgent->setVelocity(arriveVelocity);
 
 	Seek(currentAgent, targetAgent);
 }

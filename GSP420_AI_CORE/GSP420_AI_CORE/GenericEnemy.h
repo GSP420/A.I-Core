@@ -10,20 +10,20 @@
 class GenericEnemy : public Behavior
 {
 	private:
-		Agent self;
+		Agent* self;
 		State currentState;
 	public:
-		GenericEnemy(Agent);
-		void assessEnvironment(Agent);
+		GenericEnemy(Agent*);
+		void assessEnvironment(Agent*);
 		void behave();
 };
 
-GenericEnemy::GenericEnemy(Agent selfAgent)
+GenericEnemy::GenericEnemy(Agent* selfAgent)
 {
 	self = selfAgent;
 }
 
-void GenericEnemy::assessEnvironment(Agent player)
+void GenericEnemy::assessEnvironment(Agent* player)
 {
 	// here you would check things like distance to player and decide what type of state to change to
 	// because we only have one state for now, we'll just switch to that state. the enter and exit

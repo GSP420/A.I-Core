@@ -10,16 +10,16 @@
 class Persue : public State
 {
 	private:
-		Agent self;
-		Agent target;	
+		Agent* self;
+		Agent* target;	
 	public:
-		Persue(Agent, Agent);
+		Persue(Agent*, Agent*);
 		void enter();
 		void enact();
 		void exit();
 };
 
-Persue::Persue(Agent currentAgent, Agent targetAgent)
+Persue::Persue(Agent* currentAgent, Agent* targetAgent)
 {
 	self	= currentAgent;
 	target	= targetAgent;
@@ -36,10 +36,10 @@ void Persue::enact()
 	float targetCurrentPosition[3] = {0.0f, 0.0f, 0.0f};
 	float targetFuturePosition[3] = {0.0f, 0.0f, 0.0f};	
 
-	self.getPosition(selfCurrentPosition);
-	target.getVelocity(targetVelocity);
-	target.getPosition(targetCurrentPosition);
-	target.getPosition(targetFuturePosition);	// initialize target's future position with target's current position until for loop runs
+	self->getPosition(selfCurrentPosition);
+	target->getVelocity(targetVelocity);
+	target->getPosition(targetCurrentPosition);
+	target->getPosition(targetFuturePosition);	// initialize target's future position with target's current position until for loop runs
 
 	float updateTime = 1 / 20;													// need to figure out how many updates per second????????
 
