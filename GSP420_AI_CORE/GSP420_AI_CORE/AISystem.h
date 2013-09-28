@@ -1,3 +1,4 @@
+#pragma once
 /*
 *	This is the main class for the AI Core. As enemies (or other agents) are instantiated
 *	in the main game loop, a distinct behavior object is created for each one and then

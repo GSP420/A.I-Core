@@ -1,3 +1,4 @@
+#pragma once
 /*
 *	This is a generic state class. this calls should be subclassed and have it's methods overridden.
 *	for example, an idle state would essentially do nothing, a seek state could seek toward the player

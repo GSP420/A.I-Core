@@ -1,3 +1,4 @@
+#pragma once
 /*
 * this is a placeholed agent class. The main core should use this, or provide us with one
 * that has the same functionality. 

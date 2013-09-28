@@ -1,3 +1,4 @@
+#pragma once
 /*
 * This is a basic wandering state. the agent moves a random number of pixels
 * between 1 and 10 in all directions.

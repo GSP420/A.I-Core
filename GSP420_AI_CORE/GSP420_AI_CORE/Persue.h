@@ -1,3 +1,4 @@
+#pragma once
 /*
 *	Persue takes a players location, predicts its position in a few frames, based on its velocity,
 *	and current direction of movement and makes the enemy agent seek to that location.

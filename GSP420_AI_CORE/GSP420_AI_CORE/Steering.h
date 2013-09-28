@@ -1,3 +1,4 @@
+#pragma once
 //used for rotational calculations, mainly for 3D
 #define PI ((float)3.141592654f)
 #define ToRadian(degree) ((degree) * (PI / 180.0f))

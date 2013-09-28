@@ -1,22 +1,22 @@
 #include "Evade.h"
 #include <stdlib.h> 
 
-Wander::Wander(Agent* selfAgent, Agent* targetAgent)
+Evade::Evade(Agent* selfAgent, Agent* targetAgent)
 {
 	self	= selfAgent;
 	target	= targetAgent;
 }
 
-void Wander::enter()
+void Evade::enter()
 {
 }
 
-void Wander::enact()
+void Evade::enact()
 {
-	Steering.Flee(self, target);
+	Steering::Flee(self, target);
 }
 
-void Wander::exit()
+void Evade::exit()
 {
 }
 

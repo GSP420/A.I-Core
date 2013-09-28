@@ -1,3 +1,4 @@
+#pragma once
 /*
 *	This is a generic behavior class the includes a very basic set of methods 
 *	that are used to assess the agent's current environment and state, and then
