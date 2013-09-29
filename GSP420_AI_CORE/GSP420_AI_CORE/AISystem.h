@@ -28,7 +28,7 @@ class AISystem
 		AISystem(Agent*);					// constructor
 		void AI_Update();					// called to update all agents
 		void registerAgent(int, Behavior*);	// register an agent with the AI system
-		void unRegisterAgent(int);			// remove an agent from the AI system
+		void unregisterAgent(int);			// remove an agent from the AI system
 };
 
 AISystem::AISystem(Agent* playerAgent)
@@ -41,7 +41,7 @@ void AISystem::AI_Update()
 {	// called during main update loop, causes all agents to update
 	if(agents.size() > 0)
 	{
-		// loop through all the behaviors in the agents map, and 
+		// loop through all the behaviors in the agents map, and have them "behave"
 		for(agentIterator = agents.begin(); agentIterator != agents.end(); agentIterator++)
 		{
 			Behavior* currentBehavior = agentIterator->second;
@@ -56,7 +56,8 @@ void AISystem::registerAgent(int agentId, Behavior* behavior)
 	agents[agentId] = behavior;
 }
 
-void AISystem::unRegisterAgent(int agentId)
-{	//remove an agent, typically because it is destoryed
+void AISystem::unregisterAgent(int agentId)
+{	//remove an agent, typically because it is destroyed
+	delete agents[agentId];
 	agents.erase(agentId);
 }

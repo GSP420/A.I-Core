@@ -1,5 +1,6 @@
 #include "Wander.h"
 #include <stdlib.h> 
+#include <iostream> 
 
 Wander::Wander(Agent* selfAgent, Agent* targetAgent)
 {
@@ -24,6 +25,11 @@ void Wander::enact()
 
 	// seek to that spot
 	Steering::Seek(self,randomOffset);
+
+	//debug logging
+		std::cout << "Enemy position: " << randomOffset[0] << " , " << randomOffset[1] << " , " << randomOffset[2] << std::endl;
+		system("pause");
+	//end debug logging
 }
 
 void Wander::exit()
