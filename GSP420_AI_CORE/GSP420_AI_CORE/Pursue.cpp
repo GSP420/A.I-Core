@@ -1,16 +1,16 @@
-#include "Persue.h"
+#include "Pursue.h"
 
-Persue::Persue(Agent* currentAgent, Agent* targetAgent)
+Pursue::Pursue(Agent* currentAgent, Agent* targetAgent)
 {
 	self	= currentAgent;
 	target	= targetAgent;
 }
 
-void Persue::enter()
+void Pursue::enter()
 {
 }
 
-void Persue::enact()
+void Pursue::enact()
 {
 	float selfCurrentPosition[3] = {0.0f, 0.0f, 0.0f};
 	float targetVelocity[3] = {0.0f, 0.0f, 0.0f};
@@ -34,6 +34,6 @@ void Persue::enact()
 	Steering::Seek(self, targetFuturePosition);
 }
 
-void Persue::exit()
+void Pursue::exit()
 {
 }

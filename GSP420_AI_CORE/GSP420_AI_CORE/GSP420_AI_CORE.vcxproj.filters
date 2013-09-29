@@ -36,10 +36,10 @@
     <ClInclude Include="Wander.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Persue.h">
+    <ClInclude Include="Evade.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Evade.h">
+    <ClInclude Include="Pursue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

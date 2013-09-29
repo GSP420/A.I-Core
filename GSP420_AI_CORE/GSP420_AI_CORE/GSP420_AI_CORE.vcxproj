@@ -65,7 +65,7 @@
     <ClInclude Include="Behavior.h" />
     <ClInclude Include="Evade.h" />
     <ClInclude Include="GenericEnemy.h" />
-    <ClInclude Include="Persue.h" />
+    <ClInclude Include="Pursue.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="Steering.h" />
     <ClInclude Include="Wander.h" />
