@@ -7,6 +7,8 @@
 
 #include "Behavior.h"
 #include "Wander.h"
+#include "Evade.h"
+#include "Pursue.h"
 #include <stdlib.h> 
 
 class GenericEnemy : public Behavior
@@ -19,4 +21,5 @@ class GenericEnemy : public Behavior
 		~GenericEnemy();
 		void assessEnvironment(void* player);
 		void behave();
+		int distance(float[3],float[3]);
 };
