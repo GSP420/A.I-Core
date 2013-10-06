@@ -25,4 +25,5 @@ class Agent
 		void getDestination(float[3]);
 		void setDestination(float[3]);
 		void setAgentId(int);
+		void getAgentId(int);
 };

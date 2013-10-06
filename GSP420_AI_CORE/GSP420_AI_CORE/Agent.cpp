@@ -81,3 +81,8 @@ void Agent::setAgentId(int id)
 {
 	agentId = id;
 }
+
+void Agent::getAgentId(int id)
+{
+	id = agentId;
+}
